@@ -46,10 +46,28 @@ namespace CoordinatesOnArbitraryQuad {
                 return SolveS(p, t, t1, depth);
         }
 
-        public float Solve1(float2 p, int depth = 10) => SolveT(p, 0f, 1f, depth);
+        public float Solve1(float2 p, int depth = 10) {
+            if (!isRight(vl1, vr1, p)) return 1f;
+            if (!isRight(vr0, vl0, p)) return 0f;
+
+            return SolveT(p, 0f, 1f, depth);
+        }
         public float2 Solve2(float2 p, int depth = 10) {
-            var t = SolveT(p, 0f, 1f, depth);
-            var s = SolveS(p, 0f, 1f, depth);
+            float t, s;
+            if (!isRight(vr0, vl0, p))
+                t = 0f;
+            else if (!isRight(vl1, vr1, p))
+                t = 1f;
+            else
+                t = SolveT(p, 0f, 1f, depth);
+
+            if (!isRight(vl0, vl1, p))
+                s = 0f;
+            if (!isRight(vr1, vr0, p))
+                s = 1f;
+            else
+                s = SolveS(p, 0f, 1f, depth);
+            
             return new float2(s, t);
         }
 
