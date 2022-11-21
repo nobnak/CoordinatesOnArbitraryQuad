@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CoordinatesOnArbitraryQuad {
 
-    public class LinearMap {
+    public class LinearCoordinates {
         private const float EPSILON = 1e-2f;
         public readonly float2 vl0;
         public readonly float2 vr0;
@@ -14,7 +14,7 @@ namespace CoordinatesOnArbitraryQuad {
 
         protected float a;
 
-        public LinearMap(float2 vl0, float2 vr0, float2 vl1, float2 vr1) {
+        public LinearCoordinates(float2 vl0, float2 vr0, float2 vl1, float2 vr1) {
             this.vl0 = vl0;
             this.vr0 = vr0;
             this.vl1 = vl1;
